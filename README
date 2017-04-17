@@ -1,0 +1,31 @@
+=====Description=====
+Simple implementation of money transfers between accounts.
+Assumes that:
+1) accountDao implementation is responsible for atomicity of update operations;
+2) since all data stored in memory, SyncManager stores all locks for all accounts infinitely
+(in other case should have logic for clearing).
+
+
+=====Solution Usage=====
+1. Build solution
+mvn clean install
+
+2. Deploy and run server
+Server was built as zip container with all dependencies.
+To run it you should unzip it somewhere and execute command:
+java -jar MTServer-1.0-SNAPSHOT.jar
+
+3. Deploy and run client
+Client was built as zip container with all dependencies.
+To run it you should unzip it somewhere and execute command (change destination address if necessary):
+java -jar MTClient-1.0-SNAPSHOT.jar http://0.0.0.0:9000/mtservice
+
+=====Client Usage=====
+Available commands: create, get, deposit, withdraw, transfer, quit
+
+create - create account and return it's id
+get [accountId] - get account balance for accountId
+deposit [accountId] [value] - deposit value on accountId
+withdraw [accountId] [value] - withdraw value from accountId
+transfer [accountId1] [accountId2] [value] - transfer value from accountId1 to accountId2
+quit - shutdown client
